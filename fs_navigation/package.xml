@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>fs_navigation</name>
+  <version>0.0.0</version>
+  <description>Launch, configuration and mesh files for a navstack demo with FS19_modROS</description>
+
+  <maintainer email="t.c.chiang@tudelft.nl">Ting-Chia Chiang</maintainer>
+  <maintainer email="g.a.vanderhoorn@tudelft.nl">G.A. vd. Hoorn</maintainer>
+
+  <license>Apache-2.0</license>
+
+  <url type="repository">https://github.com/tud-cor/fs_mod_ros</url>
+  <author>Ting-Chia Chiang</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>laser_assembler</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+
+  <exec_depend>gmapping</exec_depend>
+  <exec_depend>laser_assembler</exec_depend>
+  <exec_depend>move_base</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>spatio_temporal_voxel_layer</exec_depend>
+  <exec_depend>tf</exec_depend>
+  <exec_depend>tf2_ros</exec_depend>
+  <exec_depend>topic_tools</exec_depend>
+
+</package>

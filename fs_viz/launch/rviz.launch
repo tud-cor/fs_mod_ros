@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find fs_viz)/rviz/navigation.rviz" />
+
+
+  <param name="robot_description" textfile="$(find fs_navigation)/urdf/farmsim_terrain.urdf" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true"  output="screen" />
+
+</launch>

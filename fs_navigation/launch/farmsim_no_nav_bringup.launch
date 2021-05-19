@@ -1,0 +1,21 @@
+<launch>
+  <!-- To use simulation time according to the /clock topic from farmsim, the /use_sim_time parameter has to set to true -->
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- launch an assembler operating on topic scan in the base_link frame, with a buffer of 400 -->
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="my_assembler">
+    <param name="max_scans" type="int" value="400" />
+    <param name="fixed_frame" type="string" value="base_link" />
+  </node>
+
+  <!-- call the assemble_scans2 service to assemble the multi-layer laser scan data into a point cloud and publish the assembled point cloud-->
+  <node type="laser_convert2_cloud_node" pkg="fs_navigation" name="laser_convert2_cloud_node">
+  </node>
+
+  <!-- introduce an STP (as a work-around for now) for map->odom when there is no localisation component running-->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_odom_broadcaster" args="0 0 0 0 0 0 map odom"/>
+
+  <!--introduce an STP for earth->map to make the map tied/fixed to the real world  -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="world_map_broadcaster" args="0 0 0 0 0 0 earth map"/>
+
+</launch>

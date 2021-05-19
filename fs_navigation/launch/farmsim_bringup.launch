@@ -1,0 +1,41 @@
+<launch>
+  <!-- To use simulation time according to the /clock topic from farmsim, the /use_sim_time parameter has to set to true -->
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- launch an assembler operating on topic scan in the base_link frame, with a buffer of 400 -->
+  <node type="laser_scan_assembler" pkg="laser_assembler" name="my_assembler">
+    <param name="max_scans" type="int" value="400" />
+    <param name="fixed_frame" type="string" value="base_link" />
+  </node>
+
+  <!-- call the assemble_scans2 service to assemble the multi-layer laser scan data into a point cloud and publish the assembled point cloud-->
+  <node type="laser_convert2_cloud_node" pkg="fs_navigation" name="laser_convert2_cloud_node">
+  </node>
+
+  <!-- Tranfrom /fstf to /tf and set .z to 0 for running move_base -->
+  <node name="z_to_0" pkg="topic_tools" type="transform"
+        args="/fstf /tf tf2_msgs/TFMessage
+        'tf2_msgs.msg.TFMessage(
+            [
+              geometry_msgs.msg.TransformStamped(
+                header=t.header,
+                child_frame_id=t.child_frame_id,
+                transform=geometry_msgs.msg.Transform(
+                  geometry_msgs.msg.Vector3(
+                    t.transform.translation.x,
+                    t.transform.translation.y,
+                    0 if &quot;odom&quot; in t.header.frame_id else t.transform.translation.z
+                  ),
+                  t.transform.rotation
+                )
+              )
+              for t in m.transforms
+            ]
+          )'
+          --import geometry_msgs std_msgs tf2_msgs"
+  />
+
+  <!--introduce an STP for earth->map to make the map tied/fixed to the real world  -->
+  <node pkg="tf2_ros" type="static_transform_publisher" name="world_map_broadcaster" args="0 0 0 0 0 0 earth map"/>
+
+</launch>

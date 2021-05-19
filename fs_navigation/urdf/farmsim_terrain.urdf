@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="terrain">
+
+  <material name="white">
+   <!-- a 0->1 is the transparency range -->
+   <color rgba="1 1 1 0.8"/>
+  </material>
+
+   <!-- introduce the FarmSim world frame -->
+  <link name="earth">
+    <visual>
+      <origin rpy="1.57 0 1.57" xyz="0 0 0"/>
+      <material name="white"/>
+      <geometry>
+         <mesh filename="package://fs_navigation/meshes/only_ravenport_town_scaled_100_reduced.stl"/>
+      </geometry>
+    </visual>
+  </link>
+  
+</robot>

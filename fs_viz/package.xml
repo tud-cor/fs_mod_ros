@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>fs_viz</name>
+  <version>0.0.0</version>
+  <description>The fs_viz package provides rviz launch/configuration files for a navstack demo with FS19_modROS</description>
+
+  <maintainer email="t.c.chiang@tudelft.nl">Ting-Chia Chiang</maintainer>
+  <maintainer email="g.a.vanderhoorn@tudelft.nl">G.A. vd. Hoorn</maintainer>
+
+  <license>Apache-2.0</license>
+
+  <url type="repository">https://github.com/tud-cor/fs_mod_ros</url>
+  <author>Ting-Chia Chiang</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>fs_navigation</exec_depend>
+
+</package>
